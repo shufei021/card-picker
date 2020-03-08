@@ -1,0 +1,96 @@
+*{margin: 0;padding: 0;}    
+.show {
+    display: block;
+}
+.hide {
+    display: none;
+}
+.picker {
+    position: fixed;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 99;
+    background-color: rgba(0, 0, 0, .3);
+    animation: showPopup 0.2s linear both;
+}
+.picker-container{
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: 60%;
+    z-index: 100;
+    background-color: #fff;
+    animation: showLayer 0.2s linear both;
+}
+@keyframes showLayer {
+    0% {
+        transform: translateY(120%);
+    }
+    100% {
+        transform: translateY(0%);
+    }
+}
+@keyframes showPopup {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+.picker-topbar{
+    display: flex;
+    height: 40px;
+}
+.picker-title-item{
+    flex: 1;
+    line-height: 40px;
+    text-align: center;
+}
+.picker-list{
+    overflow: scroll;
+}
+.picker-list ul{
+    width: 100%;
+    height: 100%;
+}
+.picker-list ul li{
+    height: 40px;
+    line-height: 40px;
+    box-sizing: border-box;
+    padding-left: 15px;
+    border-bottom: 0.5px solid #eee;
+}
+.picker-content{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+.picker-title-item span{
+    display: inline-block;
+    height: 100%;
+    color: #000;
+    position: relative;
+}
+.picker-title-item span.active{
+    color: #1890ff;
+}
+.picker-title-item span.active::after{
+    content: "";
+    display: block;
+    position: absolute;
+    right: -3px;
+    height: 2px;
+    width: 120%;
+    color: #1890ff;
+    background-color:#1890ff ;
+}
+.picker-title{
+    text-align: center;
+    height: 30px;
+    line-height: 30px;
+    font-size: 14px;
+    color: #000;
+}
