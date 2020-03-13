@@ -29,7 +29,10 @@ new PickerCard({
 })
 </script>
 ```
-
+npm 安装使用
+```js
+npm i picker-card
+```
 ## 参数配置
 
 + trigger：触发元素，值可以是DOM节点元素，也可以是选择器字符串
