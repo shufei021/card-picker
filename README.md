@@ -4,7 +4,7 @@
 
 [体验地址:http://moxiaofei.com/picker-card/example/index.html](http://moxiaofei.com/picker-card/example/index.html)
 
-第一次写js插件，难免疏忽大意，大佬莫怪
+第一次尝试着写，鼓足了我一生的勇气
 
 ## 使用
 
