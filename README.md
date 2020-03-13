@@ -1,4 +1,5 @@
 # picker-card
+<<<<<<< HEAD
 > 一种卡片式的联动选择器，旨在解决JS多级树结构展现方式，picker-card可以更多的层次结构数据展示和选择。
 
 2020/3/8 第一版
@@ -39,3 +40,12 @@ new PickerCard({
 + list：注入的数据
 + isShowControl：是否显示操作按钮 默认是 false 不显示
 + success：选择完成后的回调
+=======
+一种卡片式的联动选择器
+
+> 2020/3/8  完成`picker-card`第一个版本
+
+![示例1](http://moxiaofei.com/wp-content/uploads/2019/05/1.png)
+
+![示例2](http://moxiaofei.com/wp-content/uploads/2019/05/2.png)
+>>>>>>> 972556d9d9e3dd2d29091e91b790ffef8c1c3b51
