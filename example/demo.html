@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>picker-card 组件 示例</title>
+<link rel="stylesheet" href="css/picker-card.min.css">
+</head>
+<style>
+*{margin:0;padding:0;}
+.picker-card-demo{
+
+}
+.picker-card-padded{
+    margin: 10px;
+}
+button{
+    font-size: 18px;
+    display: block;
+    width: 100%;
+    margin-bottom: 10px;
+    padding: 15px 0;
+    color: #fff;
+    border: 1px solid #007aff;
+    background-color: #007aff;
+    text-align: center;
+    vertical-align: top;
+    border-radius: 3px;
+}
+h5{
+    margin: 20px 10px 10px 3px;
+    font-size: 14px;
+    font-weight: 400;
+    color: #8f8f94;
+    line-height: 1;
+}
+hr{
+    margin:15px 0;
+    border-top:1px solid #eee;
+    border-bottom:none;
+}
+p{
+    color:#333;
+    font-size:14px;
+    padding:10px;
+    background-color:#eee;
+    margin-bottom:10px;
+}
+</style>
+<body>
+    <div class="picker-card-demo">
+        <div class="picker-card-padded">
+            <h5>普通示例</h5>
+            <button type="button" class="demo">普通示例</button>
+          
+            <h5>单选示例</h5>
+            <button type="button" class="demo">单选示例</button>
+           
+            <h5>二级联动示例</h5>
+            <button type="button" class="demo">二级联动示例</button>
+         
+            <h5>三级级联动示例</h5>
+            <button type="button" class="demo">三级级联动示例</button>
+           
+            <hr>
+
+            <h5>自定义单选示例</h5>
+            <button type="button" class="demo">自定义单选示例</button>
+
+            <h5>自定义二级联动示例</h5>
+            <button type="button" class="demo">自定义二级联动示例</button>
+
+            <hr>
+
+            <h5>带操作按钮的示例</h5>
+            <button type="button" class="demo">带操作按钮的示例</button>
+            <p>带操作按钮时，点击确定才可以触发 success 回调，如果没用选择任何数据，则不会触发 success 回调</p>
+
+            <h5>数据别名设置示例</h5>
+            <button type="button" class="demo">数据别名设置示例</button>
+           
+        </div>
+    </div>
+</body>
+<script src="js/picker-card.min.js"></script>
+<script src="js/city-data.js"></script>
+<script src="js/tree-data.js"></script>
+<script>
+
+let [a,b,c,d,e,f,g,h] = [...document.querySelectorAll('.demo')]
+
+
+//无限层级示例
+new PickerCard({
+    trigger:'.demo',
+    list:treeData,
+    success:function(res,o) {
+        a.innerHTML = res
+        console.log(o)
+    }
+})
+
+//单选示例
+new PickerCard({
+    title:"选择城市",
+    trigger:b,
+    list:cityData,
+    level:1,
+    success:function(res,o) {
+        b.innerHTML = res
+        console.log(o)
+    }
+})
+
+//省市联动 示例
+new PickerCard({
+    trigger:c,
+    list:cityData,
+    level:2,
+    success:function(res,o) {
+        c.innerHTML = res
+        console.log(o)
+    }
+})
+
+//省市区三级联动示例
+new PickerCard({
+    trigger:d,
+    list:cityData,
+    success:function(res,o) {
+        d.innerHTML = res
+        console.log(o)
+    }
+})
+
+//自定义单选
+new PickerCard({
+    trigger:e,
+    list:[{text:'自定义单选第一层级-1',id:1},{text:'自定义单选第一层级-2',id:2}],
+    success:function(res,o) {
+        e.innerHTML = res
+        console.log(o)
+    }
+})
+
+//自定义二级联动
+new PickerCard({
+    trigger:f,
+    list:[{text:'自定义二级联动第一层级-1',id:1,children:[{text:'定义二级联动第二层级-1',id:3}]},{text:'自定义二级联动第一层级-2',id:2}],
+    success:function(res,o) {
+        f.innerHTML = res
+        console.log(o)
+    }
+})
+
+//自定义二级联动 带操作按钮
+new PickerCard({
+    trigger:g,
+    isShowControl:true,
+    list:[{text:'自定义二级联动第一层级-1',id:1,children:[{text:'定义二级联动第二层级-1',id:3}]},{text:'自定义二级联动第一层级-2',id:2}],
+    success:function(res,o) {
+        g.innerHTML = res
+        console.log(o)
+    }
+})
+
+//自定义二级联动 带操作按钮
+new PickerCard({
+    trigger:h,
+    isShowControl:true,
+    list:[{name:'自定义二级联动第一层级-1',id:1,list:[{name:'定义二级联动第二层级-1',id:3}]},{name:'自定义二级联动第一层级-2',id:2}],
+    caseName:{text:'name',children:'list'},
+    success:function(res,o) {
+        h.innerHTML = res
+        console.log(o)
+    }
+})
+</script>
+</html>
