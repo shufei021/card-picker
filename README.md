@@ -11,6 +11,7 @@
 script标签引入方式使用
 
 ```html
+<link rel="stylesheet" href="picker-card.min.css">
 <body>
     <button id="btn">触发按钮</button>	
 </body>    
