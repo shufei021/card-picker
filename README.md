@@ -38,8 +38,8 @@ new PickerCard({
 + success：选择完成后的回调
 
 ## 更新记录
-+ 2020/3/8  完成`picker-card`第一个版本
 + 2020/3/13 正式`picker-card`第一版发布
++ 2020/3/8  完成`picker-card`第一个版本
 
 ![示例1](http://moxiaofei.com/wp-content/uploads/2019/05/1.png)
 
