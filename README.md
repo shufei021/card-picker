@@ -4,7 +4,7 @@
 
 [体验地址:http://moxiaofei.com/picker-card/example/index.html](http://moxiaofei.com/picker-card/example/index.html)
 
-第一次尝试着写，鼓足了我一生的勇气
+第一次尝试着写，鼓足了我一生的勇气，走过路过，给个star吧 M_M
 
 ## 使用
 
