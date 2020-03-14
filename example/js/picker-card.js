@@ -10,7 +10,9 @@ function PickerCard(opt) {
       level:null,
       caseName: { text: 'text', children: 'children' }
     }
+    this.caseName = Object.assign(this.defaultConfig.caseName, opt.caseName)
     this.options = Object.assign(this.defaultConfig, opt)
+    this.options.caseName = this.caseName
     if (!this.options.hasOwnProperty('trigger')) {
       throw Error('The parameter item trigger is required.')
     }
@@ -42,6 +44,8 @@ function PickerCard(opt) {
   }
   PickerCard.prototype.StartListen = function () {
     this.picker.addEventListener('click', e => {
+      e.stopPropagation()
+      e.preventDefault()
       if (e.target.classList.contains('picker-card')) return this.Close()
       let className = e.target.className
       let classValue = e.target.innerHTML
@@ -141,10 +145,12 @@ function PickerCard(opt) {
     this.picker.classList.add('picker-card-show')
     this.pickerContainer.classList.remove('picker-card-hide')
     this.pickerContainer.classList.add('picker-card-show')
+    document.body.setAttribute('style','position:fixed')
   }
   PickerCard.prototype.Close = function () {
     this.selectedList = []
     document.body.removeChild(this.picker)
+    document.body.removeAttribute('style')
   }
   PickerCard.prototype.CreateTitleItem = function () {
     let html = ''

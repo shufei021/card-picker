@@ -164,16 +164,59 @@ new PickerCard({
     }
 })
 
+
+
+let tree = [{
+    name: 'root',
+    lv: 0,
+    children: [{
+        name: '一级树-0',
+        lv: 1,
+    }, {
+        name: '一级树-1',
+        lv: 1,
+        children: [{
+            name: '二级树-1-1',
+            lv: 2,
+        }]
+    }, {
+        name: '一级树-2',
+        lv: 1,
+        children: [{
+            name: '二级树-2-1',
+            lv: 2,
+        }, {
+            name: '二级树-2-2',
+            lv: 2,
+            children: [{
+                name: '三级树-2-2-1',
+                lv: 3,
+                children: [{
+                    name: '四级树-2-2-1-1',
+                    lv: 4,
+                }, {
+                    name: '四级树-2-2-1-2',
+                    lv: 4,
+                    children: [{
+                        name: '五级树-2-2-1-2-1',
+                        lv: 5,
+                    }]
+                }]
+            }]
+        }]
+    }]
+}]
 //自定义二级联动 带操作按钮
 new PickerCard({
     trigger:h,
     isShowControl:true,
-    list:[{name:'自定义二级联动第一层级-1',id:1,list:[{name:'定义二级联动第二层级-1',id:3}]},{name:'自定义二级联动第一层级-2',id:2}],
-    caseName:{text:'name',children:'list'},
+    list:tree,
+    caseName:{text:'name'},
     success:function(res,o) {
         h.innerHTML = res
         console.log(o)
     }
 })
+
 </script>
 </html>
