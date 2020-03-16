@@ -38,6 +38,7 @@ npm i picker-card
 + trigger：触发元素，值可以是DOM节点元素，也可以是选择器字符串
 + title：标题
 + list：注入的数据
++ caseName：别名设置  默认 { text:"text", children:'children'}
 + level：数据层级限制  同样的省市区数据 可以做 省/省市/省市区3种场景的应用
 + isShowControl：是否显示操作按钮 默认是 false 不显示
 + success：选择完成后的回调
