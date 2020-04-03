@@ -1,8 +1,7 @@
 /*!
- * PickerCard.js v1.0.1
+ * CardPicker.js v1.0.1
  * (c) 2020 ShuFei
  * Released under the MIT License.
- * updated: 2020/4/14 1:04
  */
 function CardPicker(options) {
   this.selectedList = []

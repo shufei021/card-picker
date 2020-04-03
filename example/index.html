@@ -1,20 +1,21 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>picker-card 组件 示例</title>
-<link rel="stylesheet" href="css/picker-card.min.css">
+<link rel="stylesheet" href="css/card-picker.min.css">
 </head>
 <style>
 *{margin:0;padding:0;}
 .picker-card-demo{
-
+    overflow: hidden;
 }
 .picker-card-padded{
     margin: 10px;
 }
-button{
+.picker-card-demo button{
     font-size: 18px;
     display: block;
     width: 100%;
@@ -24,7 +25,6 @@ button{
     border: 1px solid #007aff;
     background-color: #007aff;
     text-align: center;
-    vertical-align: top;
     border-radius: 3px;
 }
 h5{
@@ -50,16 +50,14 @@ p{
 <body>
     <div class="picker-card-demo">
         <div class="picker-card-padded">
-            <h5>普通示例</h5>
-            <button type="button" class="demo">普通示例</button>
-          
-            <h5>单选示例</h5>
+            <h5>单选示例：省份选择</h5>
             <button type="button" class="demo">单选示例</button>
+     
            
-            <h5>二级联动示例</h5>
+            <h5>二级联动示例：省市选择</h5>
             <button type="button" class="demo">二级联动示例</button>
          
-            <h5>三级级联动示例</h5>
+            <h5>三级级联动示例:省市区三级联动示例 & 充满全屏</h5>
             <button type="button" class="demo">三级级联动示例</button>
            
             <hr>
@@ -78,11 +76,14 @@ p{
 
             <h5>数据别名设置示例</h5>
             <button type="button" class="demo">数据别名设置示例</button>
+
+          
            
         </div>
     </div>
 </body>
-<script src="js/picker-card.min.js"></script>
+<script src="https://unpkg.com/better-scroll/dist/bscroll.min.js"></script>
+<script src="js/card-picker.min.js"></script>
 <script src="js/city-data.js"></script>
 <script src="js/tree-data.js"></script>
 <script>
@@ -90,62 +91,76 @@ p{
 let [a,b,c,d,e,f,g,h] = [...document.querySelectorAll('.demo')]
 
 
-//无限层级示例
-new PickerCard({
-    trigger:'.demo',
-    list:treeData,
+
+
+
+//单选示例
+new CardPicker({
+    title:"选择省份",
+    trigger:a,
+    list:cityData,
+    level:1,
     success:function(res,o) {
         a.innerHTML = res
         console.log(o)
     }
 })
 
-//单选示例
-new PickerCard({
-    title:"选择城市",
+//省市联动 示例
+new CardPicker({
+    title:"选择省市",
     trigger:b,
     list:cityData,
-    level:1,
+    level:2,
     success:function(res,o) {
         b.innerHTML = res
         console.log(o)
     }
 })
 
-//省市联动 示例
-new PickerCard({
+
+//省市区三级联动示例 & 充满全屏
+new CardPicker({
+    title:"选择省市区",
     trigger:c,
     list:cityData,
-    level:2,
+    level:3,
+    isFullScreen:true,
     success:function(res,o) {
         c.innerHTML = res
         console.log(o)
     }
 })
 
-//省市区三级联动示例
-new PickerCard({
+//自定义单选
+new CardPicker({
+    title:'请选择你喜欢的水果',
     trigger:d,
-    list:cityData,
+    level:1,
+    list:[{text:'苹果',id:1},{text:'香蕉',id:2},{text:'香梨',id:3},{text:'西瓜',id:4},{text:'橘子',id:5}],
     success:function(res,o) {
         d.innerHTML = res
         console.log(o)
     }
 })
 
-//自定义单选
-new PickerCard({
+//自定义二级联动
+new CardPicker({
+    title:'自定义二级联动',
     trigger:e,
-    list:[{text:'自定义单选第一层级-1',id:1},{text:'自定义单选第一层级-2',id:2}],
+    level:2,
+    list:[{text:'自定义二级联动第一层级-1',id:1,children:[{text:'定义二级联动第二层级-1',id:3}]},{text:'自定义二级联动第一层级-2',id:2,children:[{text:'定义二级联动第二层级-2-1',id:4}]}],
     success:function(res,o) {
         e.innerHTML = res
         console.log(o)
     }
 })
 
-//自定义二级联动
-new PickerCard({
+//自定义二级联动 带操作按钮
+new CardPicker({
+    title:'带控件类型',
     trigger:f,
+    isShowControl:true,
     list:[{text:'自定义二级联动第一层级-1',id:1,children:[{text:'定义二级联动第二层级-1',id:3}]},{text:'自定义二级联动第一层级-2',id:2}],
     success:function(res,o) {
         f.innerHTML = res
@@ -153,16 +168,6 @@ new PickerCard({
     }
 })
 
-//自定义二级联动 带操作按钮
-new PickerCard({
-    trigger:g,
-    isShowControl:true,
-    list:[{text:'自定义二级联动第一层级-1',id:1,children:[{text:'定义二级联动第二层级-1',id:3}]},{text:'自定义二级联动第一层级-2',id:2}],
-    success:function(res,o) {
-        g.innerHTML = res
-        console.log(o)
-    }
-})
 
 
 
@@ -207,13 +212,13 @@ let tree = [{
     }]
 }]
 //自定义二级联动 带操作按钮
-new PickerCard({
-    trigger:h,
+new CardPicker({
+    trigger:g,
     isShowControl:true,
     list:tree,
     caseName:{text:'name'},
     success:function(res,o) {
-        h.innerHTML = res
+        g.innerHTML = res
         console.log(o)
     }
 })
