@@ -39,6 +39,7 @@ npm i card-picker
 + title：标题
 + isFullScreen: 是否充满全屏 默认false 高度为60vh
 + list：注入的数据
++ caseName：别名设置  默认 { text:"text", children:'children'}
 + level：数据层级限制  同样的省市区数据 可以做 省/省市/省市区3种场景的应用
 + isShowControl：是否显示操作按钮 默认是 false 不显示
 + success：选择完成后的回调
