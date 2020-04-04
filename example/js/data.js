@@ -1,3 +1,4 @@
+
 var cityData = [{
 	value: '110000',
 	text: '北京市',
@@ -11546,3 +11547,137 @@ var cityData = [{
 		text: "海外"
 	}]
 }]
+
+
+let tree = [{
+    name: 'root',
+    lv: 0,
+    children: [{
+        name: '一级树-0',
+        lv: 1,
+    }, {
+        name: '一级树-1',
+        lv: 1,
+        children: [{
+            name: '二级树-1-1',
+            lv: 2,
+        }]
+    }, {
+        name: '一级树-2',
+        lv: 1,
+        children: [{
+            name: '二级树-2-1',
+            lv: 2,
+        }, {
+            name: '二级树-2-2',
+            lv: 2,
+            children: [{
+                name: '三级树-2-2-1',
+                lv: 3,
+                children: [{
+                    name: '四级树-2-2-1-1',
+                    lv: 4,
+                }, {
+                    name: '四级树-2-2-1-2',
+                    lv: 4,
+                    children: [{
+                        name: '五级树-2-2-1-2-1',
+                        lv: 5,
+                    }]
+                }]
+            }]
+        }]
+    }]
+}]
+
+var treeData = [
+    {
+      "text": "第一级1",
+      "orgCode": "第一级编码1",
+      "dataOrg": "01",
+      "children": [
+        {
+          "text": "第二级1",
+          "orgCode": "第二级编码1",
+          "dataOrg": "0101",
+          "children": [
+            {
+              "text": "第三级1",
+              "orgCode": "第三级编码1",
+              "dataOrg": "010101",
+              "children": [
+                {
+                  "text": "第四级1",
+                  "orgCode": "第四级编码1",
+                  "dataOrg": "01010101",
+                  "children": [
+                    
+                  ]
+                },
+                {
+                  "text": "第四级2",
+                  "orgCode": "第四级编码2",
+                  "dataOrg": "01010102",
+                  "children": [
+                    {
+                      "text": "第五级1",
+                      "orgCode": "第五级编码1",
+                      "dataOrg": "010101021",
+                      "children": [
+                        {
+                          "text": "第六级1",
+                          "orgCode": "第六级编码1",
+                          "dataOrg": "0101010211",
+                          "children": [
+                            
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+              ]
+            },
+          ]
+        },
+        {
+          "text": "第二级2",
+          "orgCode": "第二级编码2",
+          "dataOrg": "0102",
+          "children": [
+            {
+              "text": "第二级1",
+              "orgCode": "第二级编码1",
+              "dataOrg": "02",
+              "children": [
+                
+              ]
+            }
+          ]
+        },
+      ]
+    },
+    {
+      "text": "第一级2",
+      "orgCode": "第一级编码2",
+      "dataOrg": "02",
+      "children": [
+        {
+          "text": "第二级1",
+          "orgCode": "第二级编码1",
+          "dataOrg": "0201",
+          "children": [
+            
+          ]
+        },
+      ]
+    },
+    {
+      "text": "第一级3",
+      "orgCode": "第一级编码3",
+      "dataOrg": "03",
+      "children": [
+        
+      ]
+    },
+];
