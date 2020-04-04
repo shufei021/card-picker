@@ -1,4 +1,4 @@
-# picker-card
+# card-picker
 
 > 一种卡片式的联动选择器，旨在解决JS多级树结构展现方式，card-picker可以更多的层次结构数据展示和选择。
 
