@@ -63,6 +63,4 @@ npm i card-picker
 
 ![示例4](http://moxiaofei.com/card-picker/img/4.png)
 
-![示例5](http://moxiaofei.com/card-picker/img/pro.jpg)
-
 ![示例6](http://moxiaofei.com/card-picker/img/6.jpg)
