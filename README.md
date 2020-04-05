@@ -17,7 +17,7 @@ script标签引入方式使用
 </body>    
 <script src="card-picker.min.js"></script>
 <script>
-let list = [{text:'一级-1'.children:[{text:'二级-1-2'}]},{text:'一级-2'}]    
+let list = [{text:'一级-1',children:[{text:'二级-1-2'}]},{text:'一级-2'}]    
 new CardPicker({
     trigger:'#btn',
     list:list,
@@ -48,13 +48,21 @@ npm i card-picker
 
 
 ## 更新记录
-+ 2020/4/14 修复`card-picker`借助better-scroll重构
++ 2020/4/5  新增多选api
++ 2020/4/4  借助better-scroll重构
 + 2020/3/14 修复`card-picker`事件穿透，蒙层下面内容跟着滚动
 + 2020/3/13 正式`card-picker`第一版发布
 + 2020/3/8  完成`card-picker`第一个版本
 
 
-![示例1](http://moxiaofei.com/wp-content/uploads/2019/05/1.png)
+![示例1](http://moxiaofei.com/card-picker/img/1.png)
 
-![示例2](http://moxiaofei.com/wp-content/uploads/2019/05/2.png)
+![示例2](http://moxiaofei.com/card-picker/img/2.png)
 
+![示例3](http://moxiaofei.com/card-picker/img/3.png)
+
+![示例4](http://moxiaofei.com/card-picker/img/4.png)
+
+![示例5](http://moxiaofei.com/card-picker/img/pro.jpg)
+
+![示例6](http://moxiaofei.com/card-picker/img/6.jpg)

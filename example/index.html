@@ -6,20 +6,22 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>picker-card 组件 示例</title>
 <link rel="stylesheet" href="css/card-picker.min.css">
+<!-- <link rel="stylesheet" href="css/card-picker.css"> -->
 </head>
 <style>
-/* *{margin:0;padding:0;} */
+    body{
+        margin: 0;
+    }
 .picker-card-demo{
     overflow: hidden;
 }
 .picker-card-padded{
-    margin: 10px;
+    padding: 10px;
 }
 .picker-card-demo button{
     font-size: 18px;
     display: block;
     width: 100%;
-    margin-bottom: 10px;
     padding: 15px 0;
     color: #fff;
     border: 1px solid #007aff;
@@ -30,11 +32,17 @@
     align-items: center;
     justify-content: center;
 }
-h5{
+h3{
     margin: 20px 10px 10px 3px;
+    font-size: 18px;
+    color: #000;
+    line-height: 1;
+    text-align: center;
+}
+h5{
+    margin: 10px 10px 10px 3px;
     font-size: 14px;
-    font-weight: 400;
-    color: #8f8f94;
+    color: #000;
     line-height: 1;
 }
 hr{
@@ -54,42 +62,63 @@ p{
     margin-right: 5px;
 }
 
+.demo1,.demo2,.demo3{
+    opacity: 0.6;
+}
+
 </style>
 <body>
-    <h2>移动端多级树结构数据渲染插件</h2>
+    <h3>移动端多级树结构数据渲染插件</h3>
     <div class="picker-card-demo">
 
-        <div class="picker-card-padded">
-            <h5>单选示例：省份选择</h5>
-            <button type="button" class="demo">单选示例</button>
-     
+        
+
+            <div class="demo1 picker-card-padded">
+                <h5>单选示例：省份选择</h5>
+                <button type="button" class="demo">单选示例</button>
+
+                <h5>二级联动示例：省市选择</h5>
+                <button type="button" class="demo">二级联动示例</button>
+
+                <h5>三级级联动示例:省市区三级联动示例</h5>
+                <button type="button" class="demo">三级级联动示例</button>
+            </div>
+
+            <hr>
+
+            <div class="demo2 picker-card-padded">
+                <h5>自定义单选示例 + 自定义渲染内容方式</h5>
+                <button type="button" class="demo">自定义单选示例</button>
+    
+                <h5>自定义二级联动示例</h5>
+                <button type="button" class="demo">自定义二级联动示例</button>
+    
+                <h5>带操作按钮的示例</h5>
+                <button type="button" class="demo">带操作按钮的示例</button>
+                <p>tip:带操作按钮时，点击确定才可以触发 success 回调，如果没用选择任何数据，则不会触发 success 回调</p>
+            </div>
+
+            <hr>
            
-            <h5>二级联动示例：省市选择</h5>
-            <button type="button" class="demo">二级联动示例</button>
-         
-            <h5>三级级联动示例:省市区三级联动示例 & 充满全屏</h5>
-            <button type="button" class="demo">三级级联动示例</button>
-           
-            <h5>自定义单选示例/自定义渲染内容方式</h5>
-            <button type="button" class="demo">自定义单选示例</button>
-
-            <h5>自定义二级联动示例</h5>
-            <button type="button" class="demo">自定义二级联动示例</button>
-
-            <h5>带操作按钮的示例</h5>
-            <button type="button" class="demo">带操作按钮的示例</button>
-            <p>带操作按钮时，点击确定才可以触发 success 回调，如果没用选择任何数据，则不会触发 success 回调</p>
-
-            <h5>数据别名设置示例</h5>
-            <button type="button" class="demo">数据别名设置示例</button> 
-        </div>
+            <div class="demo3 picker-card-padded">
+                <h5>数据别名设置示例</h5>
+                <button type="button" class="demo">数据别名设置示例</button> 
+    
+                <h5>多选设置示例</h5>
+                <button type="button" class="demo">多选设置示例</button> 
+                <p>tip:多选设置生效条件需要 <code>isShowControl:true,level:1, multiple:true</code>     </p>
+    
+                <h5>多选 + 全屏 设置示例</h5>
+                <button type="button" class="demo">多选 + 全屏 设置示例</button>
+            </div> 
     </div>
 </body>
 <script src="js/bscroll.min.js"></script>
 <script src="js/card-picker.min.js"></script>
+<!-- <script src="js/card-picker.js"></script> -->
 <script src="js/data.js"></script>
 <script>
-let [a,b,c,d,e,f,g,h] = [...document.querySelectorAll('.demo')]
+let [a,b,c,d,e,f,g,h,j] = [...document.querySelectorAll('.demo')]
 
 //单选示例
 new CardPicker({
@@ -116,13 +145,12 @@ new CardPicker({
 })
 
 
-//省市区三级联动示例 & 充满全屏
+//省市区三级联动示例
 new CardPicker({
     title:"选择省市区",
     trigger:c,
     list:cityData,
     level:3,
-    isFullScreen:true,
     success:function(res,o) {
         c.innerHTML = res
         console.log(o)
@@ -138,7 +166,7 @@ let list1 = [
     {text:'pear',id:5,img:'./img/pear.png'},
     {text:'watermelon',id:6,img:'./img/watermelon.png'}
 ]
-//自定义单选
+//自定义单选 自定义渲染方式
 new CardPicker({
     title:'Please choose the fruit you like to eat',
     trigger:d,
@@ -179,8 +207,6 @@ new CardPicker({
 
 
 
-
-
 //自定义二级联动 带操作按钮
 new CardPicker({
     trigger:g,
@@ -190,6 +216,35 @@ new CardPicker({
     success:function(res,o) {
         g.innerHTML = res
         console.log(o)
+    }
+})
+
+//多选
+new CardPicker({
+    trigger:h,
+    isShowControl:true,
+    level:1,
+    list:list1,
+    multiple:true,
+    success:function(res) {
+        console.log(res)
+        h.innerHTML = res.map(i=>i.text).toString()
+        
+    }
+})
+
+//全屏多选
+new CardPicker({
+    trigger:j,
+    isShowControl:true,
+    level:1,
+    list:list1,
+    multiple:true,
+    isFullScreen:true,
+    success:function(res) {
+        console.log(res)
+        j.innerHTML = res.map(i=>i.text).toString()
+        
     }
 })
 
