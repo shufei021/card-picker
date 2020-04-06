@@ -3,7 +3,7 @@
 function CardPicker(options) {
   this.selectedList = []
   this.selectedTarget = null
-  this.$options = {
+  this.options = {
     isShowControl: false,
     multiple:false,
     level: -1,
@@ -34,26 +34,26 @@ CardPicker.prototype._init = function (options) {
 
 //参数合并
 CardPicker.prototype.optionsMerge = function (options) {
-  CardPicker.prototype.$options = this.util.m(this.$options, options)
+  this.options = this.util.m(this.options, options)
 }
 
 //触发器检测
 CardPicker.prototype.triggerOptionsVerify = function () {
-  if ('trigger' in this.$options) {
-    let t = this.$options.trigger
+  if ('trigger' in this.options) {
+    let t = this.options.trigger
     if (typeof t == 'string') {
       if(!t.length){
         return console.error(`[CardPicker warn]: trigger is not a valid selector.`)
       }
       let trigger = document.querySelector(t)
       if (trigger) {
-        return CardPicker.prototype.trigger = trigger
+        return this.trigger = trigger
       } else {
         return console.error(`[CardPicker warn]: ${t}  is not a valid selector.`)
       }
     } else {
       if (t) {
-        CardPicker.prototype.trigger = t
+        this.trigger = t
       } else {
         return  console.error('[CardPicker warn]: Can not resolve the trigger DOM.')
       }
@@ -65,8 +65,8 @@ CardPicker.prototype.triggerOptionsVerify = function () {
 
 //注入数据检测
 CardPicker.prototype.dataOptionsVerify = function () {
-  if ('list' in this.$options) {
-    if (this.$options.list.length == 0) {
+  if ('list' in this.options) {
+    if (this.options.list.length == 0) {
       console.error('[CardPicker warn]:The parameter item ` list ` is empty.')
     }
   } else {
@@ -107,7 +107,7 @@ CardPicker.prototype.initEvents = function () {
     e.preventDefault()
   }, false)
   
-  this.$options.title && this.$options.title.length && this.util.g('.rookie-title').addEventListener('touchmove', function (e) {
+  this.options.title && this.options.title.length && this.util.g('.rookie-title').addEventListener('touchmove', function (e) {
     e.preventDefault()
   }, false)
   this.util.g('.rookie-content').addEventListener('touchmove', function (e) {
@@ -151,22 +151,16 @@ CardPicker.prototype.initEvents = function () {
     e.stopPropagation()
     e.preventDefault()
     if (this.util.g('.rookie-tab-last').innerText == '请选择') {
-      try {
-        this.util.g('.rookie-tab-opactiy').classList.remove('rookie-tab-opactiy')
-      } catch (error) {
-      }
+      this.util.g('.rookie-tab-opactiy') && this.util.g('.rookie-tab-opactiy').classList.remove('rookie-tab-opactiy')
       this.selectedList.push(e.target.innerText)
     } else {
-      try {
-        this.util.g('.rookie-tab-opactiy').classList.remove('rookie-tab-opactiy')
-      } catch (error) {
-      }
+      this.util.g('.rookie-tab-opactiy') && this.util.g('.rookie-tab-opactiy').classList.remove('rookie-tab-opactiy')
       this.selectedList.splice(this.selectedList.length - 1, 1, e.target.innerText)
     }
-    if(this.$options.multiple && this.$options.isShowControl && this.$options.level==1)return;
-    if (this.$options.level != -1 && this.$options.level == this.selectedList.length) {
+    if(this.options.multiple && this.options.isShowControl && this.options.level==1)return;
+    if (this.options.level != -1 && this.options.level == this.selectedList.length) {
       
-      this.$options.success && this.$options.success(this.selectedList, this.selectedTarget)
+      this.options.success && this.options.success(this.selectedList, this.selectedTarget)
       this.util.g('.rookie-content').classList.remove('rookie-picker-modal-visible')
       setTimeout(() => {
         document.body.removeChild(document.querySelector('.rookie-container'))
@@ -174,18 +168,18 @@ CardPicker.prototype.initEvents = function () {
     }
     
   }, false)
-  this.$options.isShowControl && this.util.g('.rookie-control-confirm').addEventListener('click', e => {
+  this.options.isShowControl && this.util.g('.rookie-control-confirm').addEventListener('click', e => {
     e.stopPropagation()
     e.preventDefault()
     if (!this.selectedList.length && !this.selectedTarget) return;
-    if(this.$options.multiple && this.$options.isShowControl && this.$options.level==1){
+    if(this.options.multiple && this.options.isShowControl && this.options.level==1){
       let res = [...this.util.g('.rookie-check',true)].filter(i=>i.checked)
       if(!res.length)return;
-      let result =  res.map(i=>this.$options.list[i.getAttribute('name').slice(5)])
-      this.$options.success && this.$options.success(result)
+      let result =  res.map(i=>this.options.list[i.getAttribute('name').slice(5)])
+      this.options.success && this.options.success(result)
     
   }else{
-    this.$options.success && this.$options.success(this.selectedList, this.selectedTarget)
+    this.options.success && this.options.success(this.selectedList, this.selectedTarget)
    
   }
   this.selectedList = []
@@ -198,7 +192,7 @@ CardPicker.prototype.initEvents = function () {
     
   }, false)
 
-  this.$options.isShowControl&&this.util.g('.rookie-control-cancel').addEventListener('click', e => {
+  this.options.isShowControl&&this.util.g('.rookie-control-cancel').addEventListener('click', e => {
     e.stopPropagation()
     e.preventDefault()
     this.util.g('.rookie-content').classList.remove('rookie-picker-modal-visible')
@@ -210,14 +204,14 @@ CardPicker.prototype.initEvents = function () {
 
 //更新list列表
 CardPicker.prototype.updateListView = function (list) {
-    let _list = list ? list:this.$options.list
-    if(typeof this.$options.defineRender == 'function'){
-        this.$options.defineRender(this.$cache.ul,_list,this.$options.caseName)
+    let _list = list ? list:this.options.list
+    if(typeof this.options.defineRender == 'function'){
+        this.options.defineRender(this.$cache.ul,_list,this.options.caseName)
     }else{
-      if(this.$options.multiple && this.$options.isShowControl && this.$options.level==1){//单选
-        this.$cache.ul.innerHTML = _list.reduce((p, c,i) => p += `<li class="rookie-cells rookie-cells_checkbox ${this.$options.caseName && this.$options.caseName.children && c[this.$options.caseName.children]?'arrow':''}">
+      if(this.options.multiple && this.options.isShowControl && this.options.level==1){//单选
+        this.$cache.ul.innerHTML = _list.reduce((p, c,i) => p += `<li class="rookie-cells rookie-cells_checkbox ${this.options.caseName && this.options.caseName.children && c[this.options.caseName.children]?'arrow':''}">
         <label class="rookie-cell rookie-check__label" for="${'index'+i}">
-          <div class="rookie-cell__bd">${c[this.$options.caseName.text]}</div>
+          <div class="rookie-cell__bd">${c[this.options.caseName.text]}</div>
           <div class="rookie-cell__ft">
             <input type="checkbox" class="rookie-check" name="${'index'+i}" id="${'index'+i}">
             <i class="rookie-icon-checked"></i>
@@ -225,7 +219,7 @@ CardPicker.prototype.updateListView = function (list) {
         </label>
         </li>`, '') 
       }else{
-        this.$cache.ul.innerHTML = _list.reduce((p, c) => p += `<li class="${this.$options.caseName && this.$options.caseName.children && c[this.$options.caseName.children]?'arrow':''}">${c[this.$options.caseName.text]}</li>`, '') 
+        this.$cache.ul.innerHTML = _list.reduce((p, c) => p += `<li class="${this.options.caseName && this.options.caseName.children && c[this.options.caseName.children]?'arrow':''}">${c[this.options.caseName.text]}</li>`, '') 
       }
     }
 }
@@ -234,7 +228,7 @@ CardPicker.prototype.updateListView = function (list) {
 CardPicker.prototype.updateTabView = function (isReset = false) {
   let html = ''
   if (!isReset) {
-    if(this.$options.level==2){
+    if(this.options.level==2){
       for (let i = 0; i < this.selectedList.length; i++) {
         html += `<div class="rookie-tab-item rookie-tab-selected" style="width:40vw;">${this.selectedList[i]}</div>`
       }
@@ -245,12 +239,9 @@ CardPicker.prototype.updateTabView = function (isReset = false) {
     }
     
   }
-  if(this.$options.level==2){
-    
+  if(this.options.level==2){
       html += `<div class="rookie-tab-item rookie-tab-active rookie-tab-last" style="width:40vw;">请选择</div>`
-    
   }else{
-
     html += `<div class="rookie-tab-item rookie-tab-active rookie-tab-last">请选择</div>`
   }
   this.$cache.tab.innerHTML = html
@@ -277,14 +268,14 @@ CardPicker.prototype.util = {
 
 //查询渲染list列表
 CardPicker.prototype.queryList = function () {
-  let CloneList = this.$options.list.slice()
+  let CloneList = this.options.list.slice()
   let CloneSelectedList = this.selectedList.slice()
   let ListRender = []
   let fn = list => {
     for (let i = 0; i < CloneSelectedList.length; i++) {
-      let ObjectList = list.find(item => item[this.$options.caseName.text] == CloneSelectedList[0])
+      let ObjectList = list.find(item => item[this.options.caseName.text] == CloneSelectedList[0])
       this.selectedTarget = ObjectList
-      ListRender =ObjectList && ObjectList[this.$options.caseName.children] ? ObjectList[this.$options.caseName.children] : []
+      ListRender =ObjectList && ObjectList[this.options.caseName.children] ? ObjectList[this.options.caseName.children] : []
       if (CloneSelectedList.length > 1) {
         CloneSelectedList.splice(0, 1)
         fn(ListRender)
@@ -371,19 +362,20 @@ CardPicker.prototype.createContainer = function () {
   </div>
   <div class="rookie-content">
   <div class="rookie-hd">
-  ${this.$options.title.length?`<div class="rookie-title">${this.$options.title}</div>`:''}
-  ${this.$options.isShowControl?'<div class="rookie-control"><button class="rookie-control-cancel">取消</button><button class="rookie-control-confirm">确定</button></div>':''}
+  ${this.options.title.length?`<div class="rookie-title">${this.options.title}</div>`:''}
+  ${this.options.isShowControl?'<div class="rookie-control"><button class="rookie-control-cancel">取消</button><button class="rookie-control-confirm">确定</button></div>':''}
   <div class="rookie-tab-view"><div class="rookie-tab"><div class="rookie-tab-wrapper"><div class="rookie-tab-item rookie-tab-last rookie-tab-active">请选择</div></div></div></div></div><div class="rookie-bd"><ul class="rookie-bd-ul"></ul></div></div></div>`)
-  this.$options.isFullScreen && this.util.g('.rookie-content').classList.add('rookie-full-screen')
-  if(this.$options.level==1){
+  this.options.isFullScreen && this.util.g('.rookie-content').classList.add('rookie-full-screen')
+  if(this.options.level==1){
     this.util.g('.rookie-tab-view').style = "display:none;"
-  }else if(this.$options.level==2){
+  }else if(this.options.level==2){
     this.util.g('.rookie-tab-last').style = "width:40vw;"
     
   }
-  setTimeout(() => {
+  Promise.resolve().then(()=>{
     this.util.g('.rookie-content').classList.add('rookie-picker-modal-visible')
-  }, 0)
+  })
+    
   this.$cache = {
     container: document.querySelector('.rookie-container'),
     ul: document.querySelector('.rookie-bd-ul'),

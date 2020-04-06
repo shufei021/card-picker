@@ -3,10 +3,10 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0">
 <title>picker-card 组件 示例</title>
-<link rel="stylesheet" href="css/card-picker.min.css">
-<!-- <link rel="stylesheet" href="css/card-picker.css"> -->
+<!-- <link rel="stylesheet" href="css/card-picker.min.css"> -->
+<link rel="stylesheet" href="css/card-picker.css">
 </head>
 <style>
     body{
@@ -42,7 +42,7 @@ h3{
 h5{
     margin: 10px 10px 10px 3px;
     font-size: 14px;
-    color: #000;
+    color: #fff;
     line-height: 1;
 }
 hr{
@@ -65,6 +65,9 @@ p{
 .demo1,.demo2,.demo3{
     opacity: 0.6;
 }
+
+
+
 
 </style>
 <body>
@@ -118,10 +121,11 @@ p{
 <!-- <script src="js/card-picker.js"></script> -->
 <script src="js/data.js"></script>
 <script>
+    
 let [a,b,c,d,e,f,g,h,j] = [...document.querySelectorAll('.demo')]
 
 //单选示例
-new CardPicker({
+let aa = new CardPicker({
     title:"选择省份",
     trigger:a,
     list:cityData,
@@ -133,7 +137,7 @@ new CardPicker({
 })
 
 //省市联动 示例
-new CardPicker({
+let bb =new CardPicker({
     title:"选择省市",
     trigger:b,
     list:cityData,
@@ -247,6 +251,10 @@ new CardPicker({
         
     }
 })
+
+
+
+
 
 </script>
 </html>
