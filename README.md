@@ -2,7 +2,7 @@
 
 > 一种卡片式的联动选择器，旨在解决JS多级树结构展现方式，card-picker可以更多的层次结构数据展示和选择。
 
-[演示地址:http://moxiaofei.com/card-picker/index.html](http://moxiaofei.com/card-picker/index.html)
+[演示地址](http://moxiaofei.com/card-picker/index.html)
 
 第一次尝试着写，如果觉得可以的化话，给个star吧
 
