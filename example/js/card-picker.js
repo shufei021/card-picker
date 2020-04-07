@@ -334,7 +334,7 @@ CardPicker.prototype.notify = function () {
         }
       } else {
         this.updateTabView()
-        this.selectedTarget.children && this.updateListView(this.selectedTarget.children)
+        this.selectedTarget[this.options.caseName.children] && this.updateListView(this.selectedTarget[this.options.caseName.children])
       }
     } else {
       if (value == 0) {
@@ -346,7 +346,7 @@ CardPicker.prototype.notify = function () {
           this.updateListView(RenderList)
         } else {
           this.updateTabView()
-          this.selectedTarget.children && this.updateListView(this.selectedTarget.children)
+          this.selectedTarget[this.options.caseName.children] && this.updateListView(this.selectedTarget[this.options.caseName.children])
         }
       }
     }
