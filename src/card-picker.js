@@ -299,17 +299,16 @@ CardPicker.prototype.queryList = function () {
 CardPicker.prototype.initArrayListener = function () {
   let that = this
   const arrayProto = Array.prototype;
-  const arrayMethods = Object.create(arrayProto);
-  const newArrProto = [];
+  const newProto = Object.create(arrayProto);
+  this.selectedList = []
+  this.selectedList.__proto__ = newProto;
   ['push','splice'].forEach(method => { // 原生Array的原型方法
-    let original = arrayMethods[method];
-    newArrProto[method] = function mutator() {
+    let original = newProto[method];
+    newProto[method] = function mutator() {
       original.apply(this, arguments);
       return that.notify(method, ...arguments)
     }
   })
-  this.selectedList = []
-  this.selectedList.__proto__ = newArrProto;
 }
 
 //通知更新视图
