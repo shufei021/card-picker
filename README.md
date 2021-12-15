@@ -2,9 +2,8 @@
 
 > 一种卡片式的联动选择器，旨在解决JS多级树结构展现方式，card-picker可以更多的层次结构数据展示和选择。
 
-[演示地址](http://moxiaofei.com/card-picker/index.html)
 
-第一次尝试着写，如果觉得可以的化话，给个star吧
+第一次尝试着写，如果觉得可以的话，给个star吧
 
 ## 使用
 
@@ -57,12 +56,3 @@ npm i card-picker
 + 2020/3/8  完成`card-picker`第一个版本
 
 
-![示例1](http://moxiaofei.com/card-picker/img/1.png)
-
-![示例2](http://moxiaofei.com/card-picker/img/2.png)
-
-![示例3](http://moxiaofei.com/card-picker/img/3.png)
-
-![示例4](http://moxiaofei.com/card-picker/img/4.png)
-
-![示例6](http://moxiaofei.com/card-picker/img/6.jpg)
